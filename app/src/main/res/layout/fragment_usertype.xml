@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.home.UserTypeSelectionFragment">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/tvTitle"
+            style="@style/TextStyle.Noto.Medium"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_fit_info_car_suv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMyScrapHeader"
+            style="@style/TextStyle.Noto.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="34dp"
+            android:text="유형을 선택하세요"
+            android:textColor="@color/black_1f303e"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/gray_E5E5E5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMyScrapHeader" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnScrapLocation"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="40dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_van"
+            app:layout_constraintEnd_toStartOf="@+id/btnScrapTrunking"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="@+id/divider1"
+            app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvScrapLocation"
+            style="@style/TextStyle.Noto.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="운전자"
+            android:textColor="@color/black_1f303e"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/btnScrapLocation"
+            app:layout_constraintStart_toStartOf="@+id/btnScrapLocation"
+            app:layout_constraintTop_toBottomOf="@+id/btnScrapLocation" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnScrapTrunking"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="80dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_location_24"
+            app:layout_constraintEnd_toEndOf="@+id/divider1"
+            app:layout_constraintStart_toEndOf="@id/btnScrapLocation"
+            app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvScrapTrunking"
+            style="@style/TextStyle.Noto.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="대피자"
+            android:textColor="@color/black_1f303e"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/btnScrapTrunking"
+            app:layout_constraintStart_toStartOf="@+id/btnScrapTrunking"
+            app:layout_constraintTop_toBottomOf="@+id/btnScrapTrunking" />
+
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/gray_E5E5E5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvScrapLocation" />
+
+
+        <Button
+            android:id="@+id/button_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다음 단계"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

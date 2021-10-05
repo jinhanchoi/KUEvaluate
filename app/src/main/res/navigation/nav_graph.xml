@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/UserTypeSelectionFragment">
+
+    <fragment
+        android:id="@+id/UserTypeSelectionFragment"
+        android:name="kr.ac.korea.oku.emergency.ui.main.home.UserTypeSelectionFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_usertype">
+
+        <action
+            android:id="@+id/action_UserType_to_Driver"
+            app:destination="@id/DriverFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/DriverFragment"
+        android:name="kr.ac.korea.oku.emergency.ui.main.driver.DriverFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_driver">
+
+        <action
+            android:id="@+id/action_Driver_to_UserType"
+            app:destination="@id/UserTypeSelectionFragment" />
+    </fragment>
+</navigation>

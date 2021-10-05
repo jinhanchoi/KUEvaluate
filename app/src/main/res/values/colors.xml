@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="transparent">#00000000</color>
+
+    <!-- Gray colors -->
+    <color name="gary_bbbbbb">#BBBBBB</color>
+    <color name="gray_cccccc">#cccccc</color>
+    <color name="gray_999999">#999999</color>
+    <color name="gray_f9f9f9">#F9F9F9</color>
+    <color name="gray_dddddd">#dddddd</color>
+    <color name="gray_F4F4F4">#F4F4F4</color>
+    <color name="gray_d8d8d8">#D8D8D8</color>
+    <color name="gray_191919">#191919</color>
+    <color name="gray_E5E5E5">#E5E5E5</color>
+    <color name="gray_a1a1a1">#a1a1a1</color>
+    <color name="gray_999999_40">#66999999</color>
+    <color name="gray_cccccc_50">#80cccccc</color>
+    <color name="gray_dfdfdf">#dfdfdf</color>
+    <color name="gray_d4d4d4">#d4d4d4</color>
+
+    <!-- Black colors -->
+    <color name="black_1f303e">#1F303E</color>
+    <color name="black_3E4C58">#3E4C58</color>
+    <color name="black_333333">#333333</color>
+    <color name="black_000000_50">#80000000</color>
+    <color name="black_666666">#666666</color>
+    <color name="black_373737">#373737</color>
+
+    <!-- Blue Colors -->
+    <color name="blue_8E9EF1">#8E9EF1</color>
+    <color name="blue_264dc5">#264dc5</color>
+    <color name="blue_8e9ef2">#8e9ef2</color>
+    <color name="blue_8e9ef2_60">#998e9ef2</color>
+    <color name="blue_E1ECFF">#E1ECFF</color>
+    <color name="blue_64E2EC">#64E2EC</color>
+    <color name="blue_8e9ef1_20">#338e9ef1</color>
+    <color name="blue_8e9ef1_30">#4c8e9ef1</color>
+
+    <!-- Purple color -->
+    <color name="purple_8E9EF1">#8E9EF1</color>
+
+    <!-- Red Colors -->
+    <color name="red_FF3066">#FF3066</color>
+    <color name="red_F78246">#F78246</color>
+    <color name="red_ff3066_60">#99ff3066</color>
+
+</resources>

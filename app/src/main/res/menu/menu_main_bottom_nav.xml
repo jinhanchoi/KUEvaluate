@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_bottom_nav_home_24"
+        android:title="홈" />
+
+    <item
+        android:id="@+id/nav_location"
+        android:icon="@drawable/ic_bottom_nav_location_16_20"
+        android:title="장소찾기" />
+
+    <item
+        android:id="@+id/nav_trunking"
+        android:icon="@drawable/ic_bottom_nav_trunking_24"
+        android:title="트렁킹"/>
+
+    <item
+        android:id="@+id/nav_knowhow"
+        android:icon="@drawable/ic_bottom_nav_knowhow_24"
+        android:title="노하우" />
+
+    <item
+        android:id="@+id/nav_my"
+        android:icon="@drawable/ic_bottom_nav_my_trunk_24"
+        android:title="내트렁크" />
+
+</menu>
