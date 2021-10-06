@@ -2,6 +2,8 @@ package kr.ac.korea.oku.emergency.ui.main.driver
 
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
+import android.util.Log.INFO
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.CoroutinesRoom.Companion.execute
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import kr.ac.korea.oku.emergency.R
+import kr.ac.korea.oku.emergency.data.local.DestinationDataSource
 import kr.ac.korea.oku.emergency.data.remote.NaverMapApiService
 import kr.ac.korea.oku.emergency.databinding.FragmentDriverBinding
 import kr.ac.korea.oku.emergency.ui.main.driver.adapter.DestAdaptor
@@ -26,6 +33,9 @@ class DriverFragment : Fragment() {
     val APIKEY = "qvNDNWz3EKLRea4JlkUIDWRiLdO27ODpkzvtadT1"
     @Inject
     lateinit var apiService : NaverMapApiService
+    @Inject
+    lateinit var dataSource: DestinationDataSource
+
     private var _binding: FragmentDriverBinding? = null
     private val binding: FragmentDriverBinding
         get() = _binding!!
@@ -34,10 +44,17 @@ class DriverFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Executors.newSingleThreadExecutor().execute {
-            val call = apiService.requestPath(APIKEY_ID, APIKEY,"129.089441, 35.231100", "129.084454, 35.228982")
-            val res = call.execute()
-            println(res.body())
+//        Executors.newSingleThreadExecutor().execute {
+////            val call = apiService.requestPath(APIKEY_ID, APIKEY,"129.089441, 35.231100", "129.084454, 35.228982")
+////            val res = call.execute()
+////            println(res.body())
+//
+//        }
+        CoroutineScope(Dispatchers.IO).launch {
+            val dao = dataSource.destinationDao()
+            val result = dao.getAll(37.505890,126.888667).onEach {
+                it.forEach { dest -> Log.i("TEST LOGGING",dest.name) }
+            }.collect()
         }
 
         return FragmentDriverBinding.inflate(inflater, container, false).also {

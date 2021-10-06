@@ -8,6 +8,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kr.ac.korea.oku.emergency.data.local.DestinationDataSource
 import kr.ac.korea.oku.emergency.data.local.dao.DestinationDao
+import java.util.concurrent.Executors
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -15,7 +16,7 @@ object DatasourceModule {
     @Provides
     fun provideDatasource(
         @ApplicationContext context: Context
-    ) : DestinationDataSource = DestinationDataSource.getDatasource(context)
+    ) : DestinationDataSource = DestinationDataSource.getDatasource(context, Executors.newSingleThreadExecutor())
 
     fun provideDestinationDao(
         dataSource: DestinationDataSource
