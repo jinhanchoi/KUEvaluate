@@ -46,7 +46,8 @@
                 style="@style/TextStyle.Noto.Medium"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
                 android:drawableStart="@drawable/ic_home_recommend_location_10_12"
                 android:drawablePadding="4dp"
                 android:gravity="center_horizontal|start"
@@ -56,7 +57,8 @@
                 android:textSize="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvTitle"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
