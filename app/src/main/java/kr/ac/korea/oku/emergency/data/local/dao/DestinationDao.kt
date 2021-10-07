@@ -11,7 +11,7 @@ import kr.ac.korea.oku.emergency.data.local.model.Destination
 interface DestinationDao {
     @Query("SELECT *" +
             " FROM Destinations" +
-            " ORDER BY ABS(:lat - lat) + ABS(:lon - lon) ASC")
+            " ORDER BY ABS(:lat - lat) + ABS(:lon - lon) ASC LIMIT 5")
     fun getAll(lat : Double, lon : Double) : Flow<List<Destination>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

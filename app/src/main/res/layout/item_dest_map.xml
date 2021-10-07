@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                style="@style/TextStyle.Noto.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLocation"
+                style="@style/TextStyle.Noto.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:drawableStart="@drawable/ic_home_recommend_location_10_12"
+                android:drawablePadding="4dp"
+                android:gravity="center_horizontal|start"
+                android:maxLines="2"
+                android:text="서초구 / 2.98km"
+                android:textColor="@color/gray_999999"
+                android:textSize="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
