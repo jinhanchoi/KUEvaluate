@@ -2,6 +2,7 @@ package kr.ac.korea.oku.emergency.data.local.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import java.math.BigDecimal
 
@@ -21,4 +22,18 @@ data class Destination(
 
     @ColumnInfo(name = "lon")
     val lon : Double
+)
+
+data class Dest(
+    val id : Int? = null,
+
+    val name : String,
+
+    val address : String,
+
+    val lat : Double,
+
+    val lon : Double,
+
+    val distance : Int
 )

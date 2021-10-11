@@ -7,23 +7,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
 import dagger.hilt.android.AndroidEntryPoint
 import kr.ac.korea.oku.emergency.R
 import kr.ac.korea.oku.emergency.databinding.ActivityMainBinding
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding
     private var currentNavController: LiveData<NavController>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
         setContentView(binding.root)
 
         val navHostFragment = NavHostFragment.create(R.navigation.nav_graph)
@@ -34,6 +31,10 @@ class MainActivity : AppCompatActivity() {
 //        appBarConfiguration = AppBarConfiguration(navController.graph)
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -54,5 +55,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return currentNavController?.value?.navigateUp() ?: false
+    }
+
+
+    companion object {
+        private const val TAG = "MainActivity"
     }
 }

@@ -72,7 +72,7 @@ dependencies {
     def google_map_version = "17.0.1"
     implementation "com.google.android.gms:play-services-maps:$google_map_version"
 
-    def google_location_version = "18.0.0"
+    def google_location_version = "16.0.0"
     implementation "com.google.android.gms:play-services-location:$google_location_version"
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
@@ -84,10 +84,13 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:4.5.0"
 
     // Room
-    def room_version = "2.3.0"
+    def room_version = "2.4.0-alpha03"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
 
     implementation group: 'com.opencsv', name: 'opencsv', version: '4.4'
+    // Permission lib - Dexter (https://github.com/Karumi/Dexter)
+    implementation 'com.karumi:dexter:6.2.2'
+
 }

@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_UserType_to_Driver"
             app:destination="@id/DriverFragment" />
+        <action
+            android:id="@+id/action_UserType_to_Evacuee"
+            app:destination="@id/EvacueeFragment" />
     </fragment>
     <fragment
         android:id="@+id/DriverFragment"
@@ -23,6 +26,16 @@
 
         <action
             android:id="@+id/action_Driver_to_UserType"
+            app:destination="@id/UserTypeSelectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/EvacueeFragment"
+        android:name="kr.ac.korea.oku.emergency.ui.main.evacuee.EvacueeFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_evacuee">
+
+        <action
+            android:id="@+id/action_Evacuee_to_UserType"
             app:destination="@id/UserTypeSelectionFragment" />
     </fragment>
 </navigation>

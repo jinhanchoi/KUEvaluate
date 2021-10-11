@@ -28,8 +28,11 @@ class UserTypeSelectionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonFirst.setOnClickListener {
+        binding.btnDriver.setOnClickListener {
             findNavController().navigate(R.id.action_UserType_to_Driver)
+        }
+        binding.btnEvacuee.setOnClickListener {
+            findNavController().navigate(R.id.action_UserType_to_Evacuee)
         }
     }
 
