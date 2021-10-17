@@ -35,5 +35,5 @@ data class Dest(
 
     val lon : Double,
 
-    val distance : Int
+    val distance : Double
 )

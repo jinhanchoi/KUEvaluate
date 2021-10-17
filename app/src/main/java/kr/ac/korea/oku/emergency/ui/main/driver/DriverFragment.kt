@@ -64,16 +64,17 @@ class DriverFragment : Fragment(), OnMapReadyCallback {
     @Inject
     lateinit var dataSource: DestinationDataSource
 
+    private var _binding: FragmentDriverBinding? = null
+    private val binding: FragmentDriverBinding
+        get() = _binding!!
+
     private var gpsDialog: AlertDialog? = null
     private lateinit var naverMap: NaverMap
     private var fab: FloatingActionButton? = null
     private var locationEnabled  = false
 
-    private val activeMarkers: MutableList<Marker> = mutableListOf()
-    private var _binding: FragmentDriverBinding? = null
-    private val binding: FragmentDriverBinding
-        get() = _binding!!
-
+    private val activeMarkers: MutableMap<LatLng,Marker> = mutableMapOf()
+    private var currentMarker: Marker? = null
     private val destAdaptor : DestAdaptor by lazy {
         DestAdaptor()
     }
@@ -161,11 +162,12 @@ class DriverFragment : Fragment(), OnMapReadyCallback {
                 super.onItemRangeInserted(positionStart, itemCount)
                 val targets = destAdaptor.getItemRange(positionStart, positionStart+itemCount)
                 targets.forEach {
+                    val latlng =  com.naver.maps.geometry.LatLng(it.lat, it.lon)
                     val marker = Marker()
                     marker.icon = OverlayImage.fromResource(R.drawable.ic_location_24)
-                    marker.position = com.naver.maps.geometry.LatLng(it.lat, it.lon)
+                    marker.position = latlng
                     marker.map = naverMap
-                    activeMarkers.add(marker)
+                    activeMarkers[latlng] = marker
                 }
             }
         })
@@ -178,7 +180,15 @@ class DriverFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun moveMap(item: Dest) {
-        val cameraUpdate = CameraUpdate.scrollTo(com.naver.maps.geometry.LatLng(item.lat, item.lon)).animate(
+        currentMarker?.let { it.map = null }
+
+        val latLng = com.naver.maps.geometry.LatLng(item.lat, item.lon)
+        currentMarker = Marker()
+        currentMarker?.position = latLng
+        currentMarker?.icon = OverlayImage.fromResource(R.drawable.ic_location_red_24)
+        currentMarker?.map = naverMap
+
+        val cameraUpdate = CameraUpdate.scrollTo(latLng).animate(
             CameraAnimation.Easing
         )
         naverMap.moveCamera(cameraUpdate)
@@ -227,6 +237,7 @@ class DriverFragment : Fragment(), OnMapReadyCallback {
             })
             .check()
     }
+
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult?) {
             Log.i("CallBack", "calleds")
@@ -243,6 +254,7 @@ class DriverFragment : Fragment(), OnMapReadyCallback {
             }
         }
     }
+
     private fun moveMapTo(location : Location){
         val coord = LatLng(location)
         val locationOverlay = naverMap.locationOverlay
@@ -251,6 +263,7 @@ class DriverFragment : Fragment(), OnMapReadyCallback {
         locationOverlay.isVisible = true
         naverMap.moveCamera(CameraUpdate.scrollTo(coord))
     }
+
     private fun disableLocation() {
         if (!locationEnabled) {
             return
@@ -259,6 +272,7 @@ class DriverFragment : Fragment(), OnMapReadyCallback {
         view?.let { LocationServices.getFusedLocationProviderClient(it.context).removeLocationUpdates(locationCallback) }
         locationEnabled = false
     }
+
     private fun findDestinations(){
         view?.context?.let {
             GoogleApiClient.Builder(it)
@@ -274,7 +288,7 @@ class DriverFragment : Fragment(), OnMapReadyCallback {
                                     val dao = dataSource.destinationDao()
                                     dao.getAll(location.latitude, location.longitude).collect { result ->
                                         val converted = result.map { e ->
-                                            Dest(e.id, e.name,e.address, e.lat, e.lon, (calcDistance(location.latitude,e.lat, location.longitude, e.lon) * 1000).toInt())
+                                            Dest(e.id, e.name,e.address, e.lat, e.lon, (calcDistance(location.latitude,e.lat, location.longitude, e.lon)))
                                         }.sortedBy { e2 -> e2.distance }
                                         destAdaptor.updateData(converted)
                                         destAdaptor.notifyDataSetChanged()
@@ -296,7 +310,7 @@ class DriverFragment : Fragment(), OnMapReadyCallback {
                                                 val dao = dataSource.destinationDao()
                                                 dao.getAll(location.latitude, location.longitude).collect { result ->
                                                     val converted = result.map { e ->
-                                                        Dest(e.id, e.name,e.address, e.lat, e.lon, (calcDistance(location.latitude,e.lat, location.longitude, e.lon) * 1000).toInt())
+                                                        Dest(e.id, e.name,e.address, e.lat, e.lon, (calcDistance(location.latitude,e.lat, location.longitude, e.lon)))
                                                     }.sortedBy { e2 -> e2.distance }
                                                     destAdaptor.updateData(converted)
                                                     destAdaptor.notifyDataSetChanged()
@@ -397,8 +411,6 @@ class DriverFragment : Fragment(), OnMapReadyCallback {
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION
         )
-
-
     }
 
 }
