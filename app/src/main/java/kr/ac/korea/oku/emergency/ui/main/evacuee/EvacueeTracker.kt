@@ -1,5 +1,6 @@
 package kr.ac.korea.oku.emergency.ui.main.evacuee
 
+import android.widget.Toast
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
 import com.naver.maps.geometry.LatLng
@@ -14,6 +15,7 @@ class EvacueeTracker(
     private val caller : EvacueeFragment,
     private val naverMap : NaverMap
 ) : LocationCallback() {
+    private var trackFailCount = 0
     override fun onLocationResult(locationResult: LocationResult?) {
 
         val lastLocation = locationResult?.lastLocation ?: return
@@ -21,12 +23,12 @@ class EvacueeTracker(
         val lastLatLng = LatLng(lastLocation)
         val locationOverlay = naverMap.locationOverlay
 
-        trackNearestLatLngFromFoundedPath(lastLatLng, locationOverlay)
+        trackNearestLatLngFromFoundedPath(lastLatLng)
         changeCameraViewLikeNavi(locationOverlay)
-        checkAndchangeStartBtnStatus(locationOverlay)
+        checkAndChangeStartBtnStatus(locationOverlay)
     }
 
-    private fun trackNearestLatLngFromFoundedPath(lastLoc : LatLng, overlay: LocationOverlay){
+    private fun trackNearestLatLngFromFoundedPath(lastLoc : LatLng){
         caller.pedFoundPath?.let{
                 path ->
             caller.pedClosestLoc?.let {
@@ -37,9 +39,17 @@ class EvacueeTracker(
                 var idx = loc.idx
 
                 while(true){
-                    if(nextDistance < 20) break
+                    if(nextDistance < 20) {
+                        trackFailCount = 0
+                        break
+                    }
                     if(idx + 1 >= path.size) {
                         idx = loc.idx
+                        trackFailCount++
+                        if(trackFailCount > 10) {
+                            Toast.makeText(caller.context, "경로에서 벗어 났습니다.", Toast.LENGTH_SHORT).show()
+                            trackFailCount = 0
+                        }
                         break
                     }
                     val tempLoc = path[idx]
@@ -67,10 +77,11 @@ class EvacueeTracker(
                 if(next <= path.size) {
                     overlay.bearing = CoordCalcUtils.calculateBearing(closestLoc.location,path[next]).toFloat()
                     overlay.position = closestLoc.location
+//                    naverMap.moveCamera(CameraUpdate.scrollTo(closestLoc.location))
                     naverMap.cameraPosition = CameraPosition(
                         closestLoc.location,
-                        16.0,
-                        110.0,
+                        naverMap.cameraPosition.zoom,
+                        0.0,
                         CoordCalcUtils.calculateBearing(closestLoc.location,path[next])
                     )
                 }
@@ -78,7 +89,7 @@ class EvacueeTracker(
         }
     }
 
-    private fun checkAndchangeStartBtnStatus(overlay : LocationOverlay) {
+    private fun checkAndChangeStartBtnStatus(overlay : LocationOverlay) {
         if (caller.waiting) {
             caller.waiting = false
             caller.fab?.setImageResource(R.drawable.ic_location_disabled_black_24dp)

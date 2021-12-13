@@ -48,7 +48,8 @@ import kr.ac.korea.oku.emergency.ui.main.evacuee.models.ClosestLoc
 import kr.ac.korea.oku.emergency.ui.main.locations.DirectionFinder
 import kr.ac.korea.oku.emergency.ui.main.locations.PedPolylineDrawer
 import kr.ac.korea.oku.emergency.ui.main.locations.PedestrianDirectionFinder
-import kr.ac.korea.oku.emergency.ui.main.locations.PolylineDrawer
+import kr.ac.korea.oku.emergency.ui.main.locations.PolylineDrawerImpl
+import kr.ac.korea.oku.emergency.ui.main.locations.refactor.DistanceCalculator
 import kr.ac.korea.oku.emergency.util.gps.CoordCalcUtils
 import kr.ac.korea.oku.emergency.util.px
 import kr.ac.korea.oku.emergency.util.setHorizontalSpace
@@ -58,8 +59,6 @@ import kotlin.math.*
 
 @AndroidEntryPoint
 class EvacueeFragment : Fragment(), OnMapReadyCallback {
-    val APIKEY_ID = "kio62awlhg"
-    val APIKEY = "qvNDNWz3EKLRea4JlkUIDWRiLdO27ODpkzvtadT1"
 
     private var _binding : FragmentEvacueeBinding? = null
     private val binding: FragmentEvacueeBinding
@@ -85,7 +84,7 @@ class EvacueeFragment : Fragment(), OnMapReadyCallback {
     private var currentMarker: Marker? = null
 
     private var tracker : EvacueeTracker? = null
-    private var polylineDrawer : PolylineDrawer? = null
+    private var polylineDrawer : PolylineDrawerImpl? = null
     private var pedPolylineDrawer : PedPolylineDrawer? = null
 
     lateinit var naverMap: NaverMap
@@ -117,8 +116,8 @@ class EvacueeFragment : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        polylineDrawer = PolylineDrawer(this,directionFinder)
-        pedPolylineDrawer = PedPolylineDrawer(this, pedestrianDirectionFinder)
+        //polylineDrawer = PolylineDrawer(this,directionFinder)
+//        pedPolylineDrawer = PedPolylineDrawer(this, pedestrianDirectionFinder)
 
         locationSource = FusedLocationSource(this, 1000)
         _view = view
@@ -196,7 +195,7 @@ class EvacueeFragment : Fragment(), OnMapReadyCallback {
                     var idx = loc.idx
 
                     while(true){
-                        if(nextDistance < 20) break
+                        if(nextDistance < 2) break
                         if(idx + 1 >= path.size) {
                             idx = loc.idx
                             break
@@ -386,7 +385,13 @@ class EvacueeFragment : Fragment(), OnMapReadyCallback {
                                     val dao = dataSource.destinationDao()
                                     dao.getAll(location.latitude, location.longitude).collect { result ->
                                         val converted = result.map { e ->
-                                            Dest(e.id, e.name,e.address, e.lat, e.lon, (CoordCalcUtils.calcDistance(location.latitude,e.lat, location.longitude, e.lon)))
+                                            Dest(
+                                                id = e.id,
+                                                name = e.name,
+                                                address = e.address,
+                                                lat = e.lat,
+                                                lon = e.lon,
+                                                distance = (DistanceCalculator.calcDistance(location.latitude,e.lat, location.longitude, e.lon)))
                                         }.sortedBy { e2 -> e2.distance }
                                         evacueeDestAdaptor.updateData(converted)
                                         evacueeDestAdaptor.notifyDataSetChanged()
@@ -408,7 +413,14 @@ class EvacueeFragment : Fragment(), OnMapReadyCallback {
                                                 val dao = dataSource.destinationDao()
                                                 dao.getAll(location.latitude, location.longitude).collect { result ->
                                                     val converted = result.map { e ->
-                                                        Dest(e.id, e.name,e.address, e.lat, e.lon, (CoordCalcUtils.calcDistance(location.latitude,e.lat, location.longitude, e.lon)))
+                                                        Dest(
+                                                            id = e.id,
+                                                            name = e.name,
+                                                            address = e.address,
+                                                            lat = e.lat,
+                                                            lon = e.lon,
+                                                            distance = (DistanceCalculator.calcDistance(location.latitude,e.lat, location.longitude, e.lon))
+                                                        )
                                                     }.sortedBy { e2 -> e2.distance }
                                                     evacueeDestAdaptor.updateData(converted)
                                                     evacueeDestAdaptor.notifyDataSetChanged()
@@ -459,24 +471,18 @@ class EvacueeFragment : Fragment(), OnMapReadyCallback {
     private fun findDirection() : (location : Location, dest : Dest) -> Unit = {
         loc, dest ->
         //to remove line from map
-
         polyline?.map = null
         foundPath = null
 
         pedPolyline?.map = null
         pedFoundPath = null
-//        CoroutineScope(Dispatchers.Default).launch {
-//            pedestrianDirectionFinder.findDirection(
-//                LatLng(loc.latitude,loc.longitude),
-//                LatLng(dest.lat, dest.lon)
-//            )
-//        }
-        polylineDrawer?.setPolylineWithDirection(loc, dest)
+
+        //polylineDrawer?.setPolylineWithDirection(loc, dest)
         pedPolylineDrawer?.setPolylineWithDirection(loc, dest)
     }
 
     companion object {
-        private const val LOCATION_REQUEST_INTERVAL = 500
+        private const val LOCATION_REQUEST_INTERVAL = 300
         private val PERMISSIONS = listOf(
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION

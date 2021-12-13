@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -10,14 +11,14 @@ android {
 
     defaultConfig {
         applicationId "kr.ac.korea.oku.emergency"
-        minSdk 24
+        minSdk 26
         targetSdk 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         targetSdkVersion 30
-        minSdkVersion 24
+        minSdkVersion 26
     }
 
     buildTypes {
@@ -82,6 +83,14 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
     implementation "com.squareup.okhttp3:logging-interceptor:4.5.0"
+
+    //xml parser
+    implementation 'com.tickaroo.tikxml:annotation:0.8.13'
+    implementation 'com.tickaroo.tikxml:core:0.8.13'
+    implementation 'com.tickaroo.tikxml:retrofit-converter:0.8.13'
+
+    kapt 'com.tickaroo.tikxml:processor:0.8.13'
+
 
     // Room
     def room_version = "2.4.0-alpha03"

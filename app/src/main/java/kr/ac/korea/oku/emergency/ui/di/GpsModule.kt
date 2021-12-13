@@ -7,6 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kr.ac.korea.oku.emergency.data.remote.BusStopApiService
 import kr.ac.korea.oku.emergency.data.remote.NaverMapApiService
 import kr.ac.korea.oku.emergency.data.remote.TmapApiService
 import kr.ac.korea.oku.emergency.ui.main.locations.DirectionFinder
@@ -22,8 +23,9 @@ object GpsModule {
 
     @Provides
     fun provideDirectionFinder(
-        naverMapApiService: NaverMapApiService
-    ) : DirectionFinder = DirectionFinder(naverMapApiService)
+        naverMapApiService: NaverMapApiService,
+        busStopApiService: BusStopApiService,
+    ) : DirectionFinder = DirectionFinder(naverMapApiService,busStopApiService)
 
     @Provides
     fun providePedestrianDirectionFinder(

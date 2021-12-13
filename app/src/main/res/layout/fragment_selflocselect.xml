@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/backBtn"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_arrow_left_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider0"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/gray_E5E5E5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backBtn" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgTitleTypeSelect"
+            style="@style/TextStyle.Noto.Medium"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/ic_fit_info_car_suv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTypeSelect"
+            style="@style/TextStyle.Noto.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="34dp"
+            android:text="위치 지정 방식"
+            android:textColor="@color/black_1f303e"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgTitleTypeSelect" />
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/gray_E5E5E5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTypeSelect" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnSelfEvacuatePin"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="40dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_place_black_24dp"
+            app:layout_constraintEnd_toStartOf="@+id/btnSelfEvacuateGPS"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="@+id/divider1"
+            app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSelfEvacuatePin"
+            style="@style/TextStyle.Noto.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="핀 지정"
+            android:textColor="@color/black_1f303e"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/btnSelfEvacuatePin"
+            app:layout_constraintStart_toStartOf="@+id/btnSelfEvacuatePin"
+            app:layout_constraintTop_toBottomOf="@+id/btnSelfEvacuatePin" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnSelfEvacuateGPS"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="30dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_my_location_black_24dp"
+            app:layout_constraintEnd_toEndOf="@+id/divider1"
+            app:layout_constraintStart_toEndOf="@id/btnSelfEvacuatePin"
+            app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSelfEvacuateGPS"
+            style="@style/TextStyle.Noto.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GPS 현재 위치"
+            android:textColor="@color/black_1f303e"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/btnSelfEvacuateGPS"
+            app:layout_constraintStart_toStartOf="@+id/btnSelfEvacuateGPS"
+            app:layout_constraintTop_toBottomOf="@+id/btnSelfEvacuateGPS" />
+
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/gray_E5E5E5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSelfEvacuatePin" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

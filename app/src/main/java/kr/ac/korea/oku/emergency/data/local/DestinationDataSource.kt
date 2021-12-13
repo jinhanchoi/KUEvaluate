@@ -17,6 +17,7 @@ import kr.ac.korea.oku.emergency.data.local.model.Destination
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 
 @Database(entities = [Destination::class], version = 1,  exportSchema = false)
 abstract class DestinationDataSource : RoomDatabase(){
@@ -47,7 +48,11 @@ abstract class DestinationDataSource : RoomDatabase(){
                         Log.i("DB CREATED ONCE", "SUCCESS!!!!")
                     }
 
-                }).build().also {
+                }).setQueryCallback(
+                    RoomDatabase.QueryCallback { sqlQuery, bindArgs ->
+                    println("SQL Query: $sqlQuery SQL Args: $bindArgs")
+                }, Executors.newSingleThreadExecutor())
+                    .build().also {
                     INSTANCE = it
                 }
             }

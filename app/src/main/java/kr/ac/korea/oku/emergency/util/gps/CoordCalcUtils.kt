@@ -93,6 +93,12 @@ object CoordCalcUtils {
         return 6371000 * c
     }
 
+    /**
+     * 방위각 구하기
+     * 1.위경도는 지구 중심을 기반으로 함, 라디안 각도로 변환 (시작, 도착)
+     * 2.도착지 이동방향 구한다.
+     *
+     */
     fun calculateBearing(start: LatLng, end: LatLng): Double {
         val startLat = Math.toRadians(start.latitude)
         val startLong = Math.toRadians(start.longitude)

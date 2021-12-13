@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.main.home.UserTypeSelectionFragment">
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/tvTitle"
+            android:id="@+id/imgTitle"
             style="@style/TextStyle.Noto.Medium"
             android:layout_width="200dp"
             android:layout_height="200dp"
@@ -19,7 +18,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvMyScrapHeader"
+            android:id="@+id/tvTypeSelectHeader"
             style="@style/TextStyle.Noto.Bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -30,7 +29,7 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/imgTitle" />
 
         <View
             android:id="@+id/divider1"
@@ -41,13 +40,13 @@
             android:background="@color/gray_E5E5E5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvMyScrapHeader" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTypeSelectHeader" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btnDriver"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="40dp"
             android:padding="4dp"
             android:src="@drawable/ic_van"
@@ -61,7 +60,7 @@
             style="@style/TextStyle.Noto.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="운전자"
+            android:text="대피차량 운전자"
             android:textColor="@color/black_1f303e"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@id/btnDriver"
@@ -73,7 +72,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="40dp"
-            android:layout_marginEnd="80dp"
+            android:layout_marginEnd="30dp"
             android:padding="4dp"
             android:src="@drawable/ic_location_24"
             app:layout_constraintEnd_toEndOf="@+id/divider1"
@@ -104,5 +103,40 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvDriver" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tvDriverNumberLayout"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="100dp"
+            android:hint="차량번호"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            app:layout_constraintTop_toBottomOf="@+id/divider2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvDriverNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDriverNumberConfirm"
+            android:visibility="invisible"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            style="@style/TextStyle.Noto.Bold"
+            android:text="입력 완료"
+            android:textSize="15sp"
+            android:textColor="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@+id/tvDriverNumberLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:backgroundTint="@color/blue_264dc5"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

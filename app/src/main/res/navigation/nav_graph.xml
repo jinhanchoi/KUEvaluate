@@ -15,27 +15,154 @@
             android:id="@+id/action_UserType_to_Driver"
             app:destination="@id/DriverFragment" />
         <action
-            android:id="@+id/action_UserType_to_Evacuee"
-            app:destination="@id/EvacueeFragment" />
+            android:id="@+id/action_UserType_to_SelfLocSelect"
+            app:destination="@id/SelfLocSelectFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/SelfLocSelectFragment"
+        android:name="kr.ac.korea.oku.emergency.ui.main.evacuee.fragments.SelfLocSelectFragment"
+        android:label="자체 대피자"
+        tools:layout="@layout/fragment_selflocselect">
+
+        <action
+            android:id="@+id/action_SelfLoc_to_UserType_Selection"
+            app:destination="@id/UserTypeSelectionFragment" />
+
+        <action
+            android:id="@+id/action_SelfLoc_to_Pin"
+            app:destination="@id/PinnedSelfLocFragment" />
+
+        <action
+            android:id="@+id/action_SelfLoc_to_GPS"
+            app:destination="@id/GPSEvacuationTypeSelection" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/PinnedSelfLocFragment"
+        android:name="kr.ac.korea.oku.emergency.ui.main.locations.PinnedSelfLocFragment"
+        android:label="대피자"
+        tools:layout="@layout/fragment_pinned_selfloc">
+
+        <action
+            android:id="@+id/action_Pinned_to_SelfLocSelect"
+            app:destination="@id/SelfLocSelectFragment" />
+        <action
+            android:id="@+id/action_SelfLocSelect_to_TypeSelect"
+            app:destination="@id/EvacuationTypeSelection" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/EvacuationTypeSelection"
+        android:name="kr.ac.korea.oku.emergency.ui.main.types.TypeSelectFragment"
+        android:label="대피유형 선택"
+        tools:layout="@layout/fragment_typeselect">
+
+        <action
+            android:id="@+id/action_Selection_to_Pinned_Loc"
+            app:destination="@id/SelfLocSelectFragment" />
+        <action
+            android:id="@+id/action_Type_to_SelfEvac"
+            app:destination="@id/PinnedSelfEvacueeFragment" />
+        <action
+            android:id="@+id/action_Type_to_WithCar"
+            app:destination="@id/WithCarEvacueeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/GPSEvacuationTypeSelection"
+        android:name="kr.ac.korea.oku.emergency.ui.main.types.GPSTypeSelectFragment"
+        android:label="대피유형 선택"
+        tools:layout="@layout/fragment_gps_typeselect">
+
+        <action
+            android:id="@+id/action_Selection_to_Self_Loc"
+            app:destination="@id/SelfLocSelectFragment" />
+        <action
+            android:id="@+id/action_Type_to_SelfEvac"
+            app:destination="@id/GPSSelfEvacueeFragment" />
+        <action
+            android:id="@+id/action_Type_to_WithCar"
+            app:destination="@id/WithCarEvacueeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/PinnedSelfEvacueeFragment"
+        android:name="kr.ac.korea.oku.emergency.ui.main.evacuee.fragments.PinnedSelfEvacueeFragment"
+        android:label="대피자"
+        tools:layout="@layout/fragment_pinned_selfevacuee">
+
+        <action
+            android:id="@+id/action_Evacuee_to_TypeSelect"
+            app:destination="@id/EvacuationTypeSelection" />
+        <action
+            android:id="@+id/action_SelfLocSelect_to_Navi"
+            app:destination="@id/PedDirectionNaviFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/PedDirectionNaviFragment"
+        android:name="kr.ac.korea.oku.emergency.ui.main.locations.PedDirectionNaviFragment"
+        android:label="대피자"
+        tools:layout="@layout/fragment_direction_navi">
+
+        <action
+            android:id="@+id/action_Evacuee_to_SelfLocSelect"
+            app:destination="@id/SelfLocSelectFragment" />
+    </fragment>
+
+
     <fragment
         android:id="@+id/DriverFragment"
         android:name="kr.ac.korea.oku.emergency.ui.main.driver.DriverFragment"
-        android:label="@string/second_fragment_label"
+        android:label="운전자"
         tools:layout="@layout/fragment_driver">
 
         <action
             android:id="@+id/action_Driver_to_UserType"
             app:destination="@id/UserTypeSelectionFragment" />
+        <action
+            android:id="@+id/action_SelfLocSelect_to_Navi"
+            app:destination="@id/DirectionNaviFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/EvacueeFragment"
-        android:name="kr.ac.korea.oku.emergency.ui.main.evacuee.EvacueeFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_evacuee">
+        android:id="@+id/DirectionNaviFragment"
+        android:name="kr.ac.korea.oku.emergency.ui.main.locations.DirectionNaviFragment"
+        android:label="대피자"
+        tools:layout="@layout/fragment_direction_navi">
+
+        <action
+            android:id="@+id/action_Nav_to_UserType"
+            app:destination="@id/UserTypeSelectionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/GPSSelfEvacueeFragment"
+        android:name="kr.ac.korea.oku.emergency.ui.main.evacuee.fragments.GPSSelfEvacueeFragment"
+        android:label="대피자"
+        tools:layout="@layout/fragment_gps_selfevacuee">
+
+        <action
+            android:id="@+id/action_Evacuee_to_SelfLocSelect"
+            app:destination="@id/SelfLocSelectFragment" />
+        <action
+            android:id="@+id/action_SelfEvac_to_Navi"
+            app:destination="@id/PedDirectionNaviFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/WithCarEvacueeFragment"
+        android:name="kr.ac.korea.oku.emergency.ui.main.evacuee.fragments.WithCarEvacueeFragment"
+        android:label="대피자"
+        tools:layout="@layout/fragment_withcarevacuee">
 
         <action
             android:id="@+id/action_Evacuee_to_UserType"
-            app:destination="@id/UserTypeSelectionFragment" />
+            app:destination="@id/SelfLocSelectFragment" />
+        <action
+            android:id="@+id/action_WithCar_to_Navi"
+            app:destination="@id/PedDirectionNaviFragment" />
     </fragment>
+
 </navigation>

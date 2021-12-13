@@ -55,8 +55,25 @@
                 android:text="서초구 / 2.98km"
                 android:textColor="@color/gray_999999"
                 android:textSize="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvDuration"
                 app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDuration"
+                style="@style/TextStyle.Noto.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:gravity="center_horizontal|start"
+                android:maxLines="2"
+                android:text=""
+                android:textColor="@color/gray_999999"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/tvLocation"
+                app:layout_constraintEnd_toEndOf="@+id/tvTitle"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitle"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 

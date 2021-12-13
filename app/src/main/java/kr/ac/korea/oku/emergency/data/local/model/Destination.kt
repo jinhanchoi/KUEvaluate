@@ -27,6 +27,8 @@ data class Destination(
 data class Dest(
     val id : Int? = null,
 
+    val isMeter: Boolean = false,
+
     val name : String,
 
     val address : String,
@@ -35,5 +37,7 @@ data class Dest(
 
     val lon : Double,
 
-    val distance : Double
+    val distance : Double,
+
+    var totalTime : Int = 0
 )
